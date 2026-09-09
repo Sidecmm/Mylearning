@@ -1,0 +1,25 @@
+name: Check My Code
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download My Code
+        uses: actions/checkout@v4
+        
+      - name: Install C++ compiler
+
+        run: sudo apt-get install g++ -y
+
+      - name: Compile my engine
+
+        run: g++ -02 -std=c++17 *.cpp -o engine
+
+      - name: Test it runs
+
+        run: ./engine bench 128 1 1 default
